@@ -245,7 +245,7 @@ rcv_for_enroll_courses.setVisibility(View.VISIBLE);
 
     public void exitapp() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Exit Application?");
+        alertDialogBuilder.setTitle("Logout?");
         alertDialogBuilder
                 .setMessage("Are you sure you want to log out?")
                 .setCancelable(false)

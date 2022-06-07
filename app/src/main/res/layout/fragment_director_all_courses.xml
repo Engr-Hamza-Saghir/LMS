@@ -98,13 +98,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/shimmer_layout"/>
-    <include layout="@layout/shimmer_layout"/>
-    <include layout="@layout/shimmer_layout"/>
-    <include layout="@layout/shimmer_layout"/>
-    <include layout="@layout/shimmer_layout"/>
-    <include layout="@layout/shimmer_layout"/>
-    <include layout="@layout/shimmer_layout"/>
+    <include layout="@layout/simmer_dashboard"/>
+    <include layout="@layout/simmer_dashboard"/>
+    <include layout="@layout/simmer_dashboard"/>
+    <include layout="@layout/simmer_dashboard"/>
+    <include layout="@layout/simmer_dashboard"/>
+    <include layout="@layout/simmer_dashboard"/>
+    <include layout="@layout/simmer_dashboard"/>
 
 </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>

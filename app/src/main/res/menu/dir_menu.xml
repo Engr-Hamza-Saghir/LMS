@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    app:showAsAction="always"
+    android:icon="@drawable/ic_baseline_more_vert_24"
+    android:title=""
+
+    >
+    <menu>
+        <item
+            android:id="@+id/dir_profile"
+            app:showAsAction="never"
+            android:title="Profile"
+            android:icon="@drawable/ic_baseline_person_24">
+
+        </item>
+        <item
+            android:id="@+id/dir_logout"
+            app:showAsAction="never"
+            android:title="logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24">
+
+        </item>
+
+
+    </menu>
+</item>
+</menu>

@@ -1,7 +1,14 @@
 package com.example.lms;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -69,4 +76,61 @@ public class director_main_screen extends AppCompatActivity
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.dir_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        int item_id=item.getItemId();
+        if (item_id==R.id.dir_profile)
+        {
+            Intent intent = new Intent(getApplicationContext(), editprofile.class);
+            intent.putExtra("Token",token);
+            intent.putExtra("pname",username);
+            startActivity(intent);
+        }
+        else if (item_id==R.id.dir_logout)
+        {
+            exitapp();
+        }
+        return true;
+    }
+    public void exitapp() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Logout?");
+        alertDialogBuilder
+                .setMessage("Are you sure you want to log out?")
+                .setCancelable(false)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                moveTaskToBack(true);
+                                SharedPreferences preferences = getSharedPreferences("TOKEN_ID", 0);
+                                preferences.edit().remove("Token").apply();
+                                preferences.edit().remove("ID").apply();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+
+
+                            }
+                        })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }
