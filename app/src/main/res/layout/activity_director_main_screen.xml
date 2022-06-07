@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".director_main_screen">
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/tab_for_director"
+        android:background="@color/purple_500"
+        android:layout_height="wrap_content"
+        app:tabTextColor="#F1E9D2"
+        app:tabSelectedTextColor="@color/white"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="6dp">
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_allcourses"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Courses" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:id="@+id/tab_teachers"
+            android:text="Teacher"
+            android:singleLine="true" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:id="@+id/tab_students"
+            android:layout_height="wrap_content"
+            android:text="Student" />
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/tab_latesubmissions"
+            android:text="Late Submissions"
+            android:singleLine="true" />
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpager_for_director"
+        >
+
+    </androidx.viewpager.widget.ViewPager>
+</LinearLayout>

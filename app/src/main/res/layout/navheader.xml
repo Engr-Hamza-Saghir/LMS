@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1E68E6"
+    android:orientation="vertical"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="left"
+        app:cardCornerRadius="360dp">
+
+        <ImageView
+            android:id="@+id/student_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/pp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:id="@+id/student_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:fontFamily="@font/castoro"
+        android:gravity="left"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/student_email"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/castoro"
+        android:autoLink="all"
+        android:linksClickable="true"
+        android:textColorLink="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:text=""
+
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+</LinearLayout>

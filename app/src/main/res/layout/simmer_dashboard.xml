@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    android:elevation="0dp"
+    android:layout_marginTop="0dp"
+    android:background="@drawable/sunject"
+    >
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="3dp"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/subject_img"
+            android:layout_width="90dp"
+            app:layout_constraintCircleRadius="@dimen/cardview_default_radius"
+            android:layout_height="90dp"
+            android:background="@color/shimmer"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subject_no"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/shimmer"
+            android:fontFamily="@font/castoro"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.303"
+            app:layout_constraintStart_toEndOf="@+id/subject_img"
+            app:layout_constraintTop_toTopOf="@+id/cardView8"
+            app:layout_constraintVertical_bias="0.096" />
+
+        <TextView
+            android:id="@+id/subjet_name"
+            android:fontFamily="@font/castoro"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="200dp"
+            android:background="@color/shimmer"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:maxWidth="100dp"
+            android:maxLength="30"
+            android:maxLines="2"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/subject_no"
+            app:layout_constraintHorizontal_bias="0.433"
+            app:layout_constraintStart_toStartOf="@+id/subject_no"
+            app:layout_constraintTop_toBottomOf="@+id/subject_no"
+            app:layout_constraintVertical_bias="0.38" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
