@@ -2,6 +2,7 @@ package com.example.lms;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class show_user_record extends AppCompatActivity {
 
         setContentView(R.layout.activity_show_user_record);
         setTitle("Courses");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         url = "http://192.168.43.30/moodle/webservice/rest/server.php?wsfunction=core_enrol_get_users_courses&userid=" + myid + "&wstoken=" + token + "&moodlewsrestformat=json";
         rcv_for_enroll_courses = (RecyclerView) findViewById(R.id.recv_for_userrecord);
         rcv_for_enroll_courses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -97,5 +99,13 @@ rcv_for_enroll_courses.setVisibility(View.VISIBLE);
         requestQueue.add(jsonArray);
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish();
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 }

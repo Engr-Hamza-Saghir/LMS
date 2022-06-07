@@ -12,7 +12,7 @@
         android:id="@+id/tab_for_director"
         android:background="@color/purple_500"
         android:layout_height="wrap_content"
-        app:tabTextColor="#F1E9D2"
+        app:tabTextColor="#B1AA94"
         app:tabSelectedTextColor="@color/white"
         android:ellipsize="end"
         android:maxLines="1"

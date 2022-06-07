@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +43,9 @@ String p_name;
         token=getIntent().getStringExtra("Token");
         p_name=getIntent().getStringExtra("pname");
         Log.d("TAG", "onCreate: =="+p_name);
-        setTitle("Edit Profile");
+        setTitle("Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         cancel=findViewById(R.id.update_cancel_btn);
         gallery=findViewById(R.id.editproflebtn);
         profile_pic=findViewById(R.id.profile_picture);
@@ -153,6 +156,15 @@ save.setVisibility(View.GONE);
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArray);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

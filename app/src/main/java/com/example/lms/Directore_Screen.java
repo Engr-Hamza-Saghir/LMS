@@ -2,6 +2,7 @@ package com.example.lms;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -45,7 +46,7 @@ ShimmerFrameLayout shimmerFrameLayout;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directore_screen);
-
+getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         specific_cname = getIntent().getStringExtra("my_ecname");
         specific_cno = getIntent().getStringExtra("my_ecno");
         token = getIntent().getStringExtra("token");
@@ -214,5 +215,13 @@ ShimmerFrameLayout shimmerFrameLayout;
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArray);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish();
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 }

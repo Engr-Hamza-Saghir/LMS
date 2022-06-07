@@ -19,17 +19,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <include layout="@layout/shimmer_layout">
+            <include layout="@layout/simmer_dashboard">
             </include>
-            <include layout="@layout/shimmer_layout">
+            <include layout="@layout/simmer_dashboard">
             </include>
-            <include layout="@layout/shimmer_layout">
+            <include layout="@layout/simmer_dashboard">
             </include>
-            <include layout="@layout/shimmer_layout">
+            <include layout="@layout/simmer_dashboard">
             </include>
-            <include layout="@layout/shimmer_layout">
+            <include layout="@layout/simmer_dashboard">
             </include>
-            <include layout="@layout/shimmer_layout">
+            <include layout="@layout/simmer_dashboard">
+            </include>
+            <include layout="@layout/simmer_dashboard">
+            </include>
+            <include layout="@layout/simmer_dashboard">
             </include>
 
         </LinearLayout>
