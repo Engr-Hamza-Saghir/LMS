@@ -22,7 +22,6 @@ public class Viewpage_Adapter extends FragmentPagerAdapter {
             case 0: return new director_all_courses();
             case 1: return new director_all_teachers();
             case 2: return new director_all_students();
-            case 3: return new director_late_submissions();
             default:return null;
         }
     }
