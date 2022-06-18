@@ -54,12 +54,24 @@ public class Myadapter extends RecyclerView.Adapter<myviewholder>  {
             @Override
             public void onClick(View view)
             {
-                Intent intent=new Intent(context,Weekdata.class);
-                intent.putExtra("position",p);
-                intent.putExtra("token",token);
-                intent.putExtra("cid",cid);
-                intent.putExtra("name",model.getWeekedit());
-                context.startActivity(intent);
+                Log.d("huza", "onClick: "+position);
+                if(position==0&&token.equals("8e6dc0f1606847131b60cc511d36db23"))
+                {
+                    Intent intent=new Intent(context,General_act.class);
+                    intent.putExtra("position", p);
+                    intent.putExtra("token", token);
+                    intent.putExtra("cid", cid);
+                    intent.putExtra("name", model.getWeekedit());
+                    context.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(context, Weekdata.class);
+                    intent.putExtra("position", p);
+                    intent.putExtra("token", token);
+                    intent.putExtra("cid", cid);
+                    intent.putExtra("name", model.getWeekedit());
+                    context.startActivity(intent);
+                }
 /*
             selectListner.onItemClicked(data.get(position));
 */

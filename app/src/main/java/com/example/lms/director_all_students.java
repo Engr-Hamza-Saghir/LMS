@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,12 +40,12 @@ public class director_all_students extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    RecyclerView recyclerView_dir_all_teachers;
-    adapter_for_ecourse adp;
-    Adapter_for_director myadapter;
-    String token;
-    String user_id;
-    int cids;
+   private RecyclerView recyclerView_dir_all_teachers1;
+    private adapter_for_ecourse adp;
+    private Adapter_for_director myadapter;
+    private String token;
+    private String user_id;
+    private int cids;
 
     public director_all_students() {
         // Required empty public constructor
@@ -66,7 +68,10 @@ public class director_all_students extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +86,9 @@ public class director_all_students extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_director_all_students, container, false);
-        recyclerView_dir_all_teachers=(RecyclerView) view.findViewById(R.id.rcview_for_director_all_students);
-        recyclerView_dir_all_teachers.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        Toast.makeText(getActivity().getApplicationContext(), "bli bli", Toast.LENGTH_SHORT).show();
+        recyclerView_dir_all_teachers1 =(RecyclerView) view.findViewById(R.id.rcview_for_director_all_students);
+        recyclerView_dir_all_teachers1.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token=sharedPreferences.getString("Token","");
@@ -91,6 +97,11 @@ public class director_all_students extends Fragment {
         dataincome_of_teacher_from_course();
         return view;    }
     public void dataincome_of_teacher_from_course() {
+
+
+
+
+
         ArrayList<model_director> holder = new ArrayList<>();
         ArrayList<model_director> holder1 = new ArrayList<>();
         String url_for_get_teacher_courses = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_enrol_get_enrolled_users&courseid=1&moodlewsrestformat=json";
@@ -112,13 +123,13 @@ public class director_all_students extends Fragment {
 
                     }
                     user_id=object.getString("id");
-                    Log.d("poyo", "dataincome_of_teacher_from_course: "+user_id);
                     m.setT_img(object.getString("profileimageurlsmall"));
                     m.setT_name(object.getString("fullname").toString());
                     m.setT_email(object.getString("email"));
                     m.setT_id(user_id);
                     holder.add(m);
 
+                    Log.d("poyo", "umer"+m);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -127,8 +138,7 @@ public class director_all_students extends Fragment {
             }
 
             myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(), token,user_id);
-            recyclerView_dir_all_teachers.setAdapter(myadapter);
-
+            recyclerView_dir_all_teachers1.setAdapter(myadapter);
             Log.d("checking", "Json Data processed ");
 
 

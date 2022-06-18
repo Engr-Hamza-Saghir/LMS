@@ -200,7 +200,7 @@ rcv_for_all_courses.setVisibility(View.VISIBLE);
                     arrayList.add(m);
                     total_courses.setText("Courses:" + arrayList.size());
 
-                    Log.d("ac", "IDS = " + cids);
+                    Log.d("ac", "IDS = " + m);
 
 
                 } catch (JSONException e) {

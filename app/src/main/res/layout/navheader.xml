@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#1E68E6"
+    android:background="@color/purple_500"
     android:orientation="vertical"
     >
 
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
+        android:layout_marginLeft="10dp"
         android:layout_height="150dp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="left"
         app:cardCornerRadius="360dp">
 
@@ -18,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/pp" />
+            app:srcCompat="@drawable/ic_baseline_person_24" />
 
     </androidx.cardview.widget.CardView>
 
@@ -28,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
         android:fontFamily="@font/castoro"
         android:gravity="left"
         android:text=""
@@ -40,6 +43,7 @@
         android:id="@+id/student_email"
         android:layout_width="match_parent"
         android:fontFamily="@font/castoro"
+        android:layout_marginLeft="5dp"
         android:autoLink="all"
         android:linksClickable="true"
         android:textColorLink="#FFFFFF"

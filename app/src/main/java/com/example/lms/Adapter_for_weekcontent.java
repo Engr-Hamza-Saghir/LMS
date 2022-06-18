@@ -1,6 +1,5 @@
 package com.example.lms;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -66,8 +65,10 @@ public class Adapter_for_weekcontent extends RecyclerView.Adapter<viewholder_for
             @Override
             public void onClick(View view)
             {
-
-                if (!model_for_week_content.isF())
+                Uri uri = Uri.parse(model_for_week_content.getWeek_content());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                context.startActivity(intent);
+               /* if (!model_for_week_content.isF())
                 {
                     DownloadManager manager;
                     manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -81,7 +82,7 @@ public class Adapter_for_weekcontent extends RecyclerView.Adapter<viewholder_for
                     Uri uri = Uri.parse(model_for_week_content.getWeek_content());
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     context.startActivity(intent);
-                }
+                }*/
 
 
             }

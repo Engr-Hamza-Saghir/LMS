@@ -15,11 +15,14 @@
         android:theme="@style/Theme.LMS"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".General_act"
+            android:exported="false" />
+        <activity
             android:name=".show_user_record"
             android:exported="false" />
         <activity
             android:name=".director_main_screen"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".rcv_test"
             android:exported="true" />
@@ -55,6 +58,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Splash_lms"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,9 +68,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Splash_lms"
-            android:exported="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"

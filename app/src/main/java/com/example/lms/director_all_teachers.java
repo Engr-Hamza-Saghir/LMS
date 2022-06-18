@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,11 +43,9 @@ public class director_all_teachers extends Fragment {
 
     RecyclerView recyclerView_dir_all_teachers;
     adapter_for_ecourse adp;
-    Adapter_for_director myadapter;
-String token;
-int cids;
-String user_id;
-
+    Adapter_for_director myadapter1;
+    String token;
+    String user_id;
 
     public director_all_teachers() {
         // Required empty public constructor
@@ -80,10 +80,16 @@ String user_id;
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_director_all_teachers, container, false);
+        Toast.makeText(getActivity().getApplicationContext(), "bla bla", Toast.LENGTH_SHORT).show();
         recyclerView_dir_all_teachers=(RecyclerView) view.findViewById(R.id.rcview_for_director_all_teacher);
         recyclerView_dir_all_teachers.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
@@ -91,68 +97,21 @@ String user_id;
         token=sharedPreferences.getString("Token","");
         Log.d("jwa", "onCreateView: "+token);
 /*        dataincome_of_director();*/
-        dataincome_of_teacher_from_course();
+        dataincome_of_teacher_from_courses();
         return view;
 
     }
-    public void dataincome_of_director() {
-        ArrayList<model_for_ecourse> arrayList = new ArrayList<>();
-
-        String director_url = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_course_get_courses&moodlewsrestformat=json";
-
-        JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, director_url, null, response -> {
-
-            for (int i = 0; i < response.length(); i++) {
-                try {
-                    Log.d("cs", "For loop started" + response.length());
-
-                    JSONObject object = response.getJSONObject(i);
-                    model_for_ecourse m;
-                    m = new model_for_ecourse();
-                    cids = Integer.valueOf(object.getString("id"));
-                    Log.d("uff", "dataIncome: " + cids);
-                    user_id=object.getString("id");
-                    m.setCid(cids);
-                    m.setEc_img(R.drawable.sunject);
-                    m.setEc_no(object.getString("shortname").toString());
-                    m.setEc_name(object.getString("displayname").toString());
-                    arrayList.add(m);
-                    Log.d("ac", "IDS = " + cids);
-
-
-                    Log.d("checking", "Courses = " + arrayList.get(i).getEc_name());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            adp = new adapter_for_ecourse(arrayList, getActivity(),token,user_id);
-            recyclerView_dir_all_teachers.setAdapter(adp);
-            Log.d("checking", "Json Data processed ");
-
-
-        }, error -> {
-
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        jsonArray.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(jsonArray);
-    }
-    public void dataincome_of_teacher_from_course() {
+    public void dataincome_of_teacher_from_courses() {
         ArrayList<model_director> holder = new ArrayList<>();
-        ArrayList<model_director> holder1 = new ArrayList<>();
         String url_for_get_teacher_courses = "http://192.168.45.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_enrol_get_enrolled_users&courseid=1&moodlewsrestformat=json";
 
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, url_for_get_teacher_courses, null, response -> {
-            Log.d("checking", "For loop started");
-            Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
+            Log.d("checking", "For loop started+");
 
-            for (int i = 2; i < 39; i++) {
+
+            for (int i = 2; i < 38; i++) {
                 try {
-                    Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
+                    Log.d("uma1", "dataincome_of_teacher_from_course: " + i);
                     JSONObject object = response.getJSONObject(i);
 
                     model_director m;
@@ -162,11 +121,15 @@ String user_id;
                     if (kshi.contains("biit") || kshi.contains("arid")) {
 
                     }
+                    user_id=object.getString("id");
                     m.setT_img(object.getString("profileimageurlsmall"));
                     m.setT_name(object.getString("fullname").toString());
                     m.setT_email(object.getString("email"));
+                    m.setT_id(user_id);
                     holder.add(m);
 
+
+                    Log.d("saga", "umer"+user_id);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -174,8 +137,8 @@ String user_id;
 
             }
 
-            myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(), token,user_id);
-            recyclerView_dir_all_teachers.setAdapter(myadapter);
+            myadapter1 = new Adapter_for_director(holder, getActivity().getApplicationContext(), token,user_id);
+            recyclerView_dir_all_teachers.setAdapter(myadapter1);
 
             Log.d("checking", "Json Data processed ");
 
@@ -185,7 +148,7 @@ String user_id;
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        jsonArray.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+        jsonArray.setRetryPolicy(new DefaultRetryPolicy(50000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArray);
     }

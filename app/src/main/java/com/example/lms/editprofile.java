@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
@@ -28,7 +29,7 @@ public class editprofile extends AppCompatActivity {
 Button save;
 FloatingActionButton gallery;
 ImageView profile_pic;
-Button cancel;
+MaterialButton cancel;
 String token;
 String url;
 TextInputEditText name;

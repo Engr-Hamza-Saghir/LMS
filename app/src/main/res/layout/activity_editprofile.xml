@@ -11,8 +11,8 @@
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:background="#185ACA"
-        app:cardBackgroundColor="#185ACA"
+        android:background="@color/purple_500"
+        app:cardBackgroundColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,17 +145,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upemail" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/update_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="28dp"
-        android:background="#185ACA"
         android:gravity="center"
+        app:cornerRadius="35dp"
         android:text="Back"
-        app:backgroundTint="#185ACA"
+        android:textSize="14dp"
+        app:backgroundTint="@color/purple_500"
         app:icon="@drawable/ic_round_arrow_back_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

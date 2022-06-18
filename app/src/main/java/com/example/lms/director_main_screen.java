@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -33,9 +34,10 @@ public class director_main_screen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_director_main_screen);
         tabLayout=(TabLayout) findViewById(R.id.tab_for_director);
-        all_teachers=(TabItem) findViewById(R.id.tab_allcourses);
+        all_courses=(TabItem) findViewById(R.id.tab_allcourses);
+        all_teachers=(TabItem) findViewById(R.id.tab_teachers);
+        Log.d("TAGi", "onCreate: "+all_students);
         all_students=(TabItem) findViewById(R.id.tab_students);
-        all_courses=(TabItem) findViewById(R.id.tab_teachers);
         all_late_submissions=(TabItem) findViewById(R.id.tab_latesubmissions);
         viewPager=(ViewPager) findViewById(R.id.viewpager_for_director);
 

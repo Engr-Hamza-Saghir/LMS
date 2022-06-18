@@ -46,21 +46,19 @@ public class Weekdata extends AppCompatActivity {
         setContentView(R.layout.activity_weekdata);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         recyclerView = findViewById(R.id.my_rcv);
         recyclerView.hasFixedSize();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        add_assignment=(Button)findViewById(R.id.addtask_for_teacher);
         cardView=(CardView)findViewById(R.id.assignment_card);
         SharedPreferences editor=getSharedPreferences("TOKEN_ID",MODE_PRIVATE);
         username=editor.getString("puser","");
         Log.d("user", "onCreate: "+username);
 
-        if (username.contains("biit"))
-        {
-            add_assignment.setVisibility(View.GONE);
-        }
+
 
         week_title = getIntent().getStringExtra("name");
         token = getIntent().getStringExtra("token");
@@ -91,7 +89,7 @@ public class Weekdata extends AppCompatActivity {
         ArrayList<Model_for_week_content> holder = new ArrayList<>();
 
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
-            Log.d("checkng", "For loop started" + position);
+            Log.d("chunk", "For loop started" + position);
 
 
             try {
@@ -114,17 +112,20 @@ public class Weekdata extends AppCompatActivity {
                         JSONArray jsonArray2 = jsonObject.getJSONArray("contents");
                         for (int k = 0; k < jsonArray2.length(); k++) {
                             JSONObject innerobject = jsonArray2.getJSONObject(k);
-                            m.setWeek_content(innerobject.getString("fileurl"));
                             Log.d("flag", "dataque: " + flag);
                             String t = innerobject.getString("type");
 
                             if (t.equals("file"))
                             {
+                                m.setWeek_content(jsonObject.getString("url"));
+
                                 m.setF(false);
                                         Log.d("flag", "dataque: " + flag);
                             }
                             else
                             {
+                                m.setWeek_content(innerobject.getString("fileurl"));
+
                                 m.setF(true);
                             }
 

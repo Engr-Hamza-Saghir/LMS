@@ -22,6 +22,7 @@
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_directore_screen.xml" value="0.25" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_editprofile.xml" value="0.25" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_editprofile2.xml" value="0.25" />
+        <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_general.xml" value="0.25" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_main.xml" value="0.3025" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_main_afterlogin.xml" value="0.2251655629139073" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_rcv_test.xml" value="0.20416666666666666" />
@@ -30,7 +31,7 @@
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_splashscreen.xml" value="0.20416666666666666" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_teacher_view_course.xml" value="0.33" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_view_std_assignment.xml" value="0.33" />
-        <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_weekdata.xml" value="0.33" />
+        <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/activity_weekdata.xml" value="0.22" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/dash_header.xml" value="0.1" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/enroll_single_row.xml" value="0.19318181818181818" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/fragment_director_all_courses.xml" value="0.22" />
@@ -38,6 +39,7 @@
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/fragment_director_all_teachers.xml" value="0.2" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/fragment_director_late_submissions.xml" value="0.20416666666666666" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/fragment_gallery.xml" value="0.17760416666666667" />
+        <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/mybutton.xml" value="0.19010416666666666" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/nav_header_nav_drawereg.xml" value="0.20416666666666666" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/navheader.xml" value="0.1" />
         <entry key="..\:/BSCS-8C/FYP/LMS/app/src/main/res/layout/shimmer_layout.xml" value="0.5" />

@@ -16,7 +16,7 @@ public class Splash_lms extends AppCompatActivity {
         setContentView(R.layout.activity_splash_lms);
         getSupportActionBar().hide();
         ProgressBar progress=(ProgressBar)findViewById(R.id.progress_bar);
-
+        startService(new Intent(getApplicationContext(),Services.class));
         new Handler().postDelayed(new Runnable()
         {
             @Override
