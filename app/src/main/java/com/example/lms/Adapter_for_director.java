@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,9 +19,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class Adapter_for_director extends RecyclerView.Adapter<view_holder_director>
+public class Adapter_for_director extends RecyclerView.Adapter<view_holder_director> implements Filterable
 {
     ArrayList<model_director>model_directors;
+    ArrayList<model_director>backup;
     String token;
     Context context;
     String falto;
@@ -30,6 +33,7 @@ public class Adapter_for_director extends RecyclerView.Adapter<view_holder_direc
         this.token=token;
         this.falto =user_id;
         this.context=context;
+        backup=new ArrayList<>(model_directors);
         Log.d("oil", "Adapter_for_director: "+user_id);
     }
     @NonNull
@@ -72,4 +76,45 @@ public class Adapter_for_director extends RecyclerView.Adapter<view_holder_direc
     {
         return model_directors.size();
     }
+
+    @Override
+    public Filter getFilter()
+    {
+        return filter;
+    }
+    Filter filter=new Filter()
+    {
+        @Override
+        //compelete on bakground thread
+        protected FilterResults performFiltering(CharSequence search_keyword)
+        {
+            ArrayList<model_director> filtered_data=new ArrayList<>();
+            if (search_keyword.toString().equals(""))
+            {
+                filtered_data.addAll(backup);
+            }
+            else
+            {
+                for(model_director model:backup)
+                {
+                    if (model.getT_name().toString().toLowerCase().contains(search_keyword.toString().toLowerCase()))
+                    {
+                        filtered_data.add(model);
+                    }
+                }
+            }
+            FilterResults filterResults=new FilterResults();
+            filterResults.values=filtered_data;
+            return filterResults;
+        }
+
+        @Override
+        //compelete on main_ui thread
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults)
+        {
+            model_directors.clear();
+            model_directors.addAll((ArrayList<model_director>)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }

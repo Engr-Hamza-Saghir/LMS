@@ -2,10 +2,12 @@ package com.example.lms;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -224,4 +226,29 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.serching,menu);
+        MenuItem menuItem=menu.findItem(R.id.search_item);
+        SearchView searchView=(SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s)
+            {
+                myadapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }

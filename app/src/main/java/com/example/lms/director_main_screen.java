@@ -79,9 +79,29 @@ public class director_main_screen extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
+
+       /* getMenuInflater().inflate(R.menu.serching,menu);
+        MenuItem menuItem=menu.findItem(R.id.search_item);
+        SearchView searchView=(SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s)
+            {
+
+                return false;
+            }
+        });*/
+
         getMenuInflater().inflate(R.menu.dir_menu,menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item)

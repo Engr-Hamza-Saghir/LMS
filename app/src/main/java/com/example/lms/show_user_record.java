@@ -2,8 +2,10 @@ package com.example.lms;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -107,5 +109,29 @@ rcv_for_enroll_courses.setVisibility(View.VISIBLE);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.serching,menu);
+        MenuItem menuItem=menu.findItem(R.id.search_item);
+        SearchView searchView=(SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s)
+            {
+                adp.getFilter().filter(s);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 }
