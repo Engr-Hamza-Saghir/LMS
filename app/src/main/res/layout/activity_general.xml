@@ -11,6 +11,7 @@
         style="@style/Widget.MaterialComponents.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginTop="24dp"
         android:text="Result file is ready please click"
         android:textSize="20sp"

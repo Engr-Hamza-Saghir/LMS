@@ -182,7 +182,7 @@ public class director_all_courses extends Fragment {
 shimmerFrameLayout.stopShimmer();
 shimmerFrameLayout.setVisibility(View.GONE);
 rcv_for_all_courses.setVisibility(View.VISIBLE);
-            for (int i = 53; i < response.length(); i++) {
+            for (int i = 52; i < response.length(); i++) {
                 try {
                     Log.d("cs", "For loop started" + response.length());
 
