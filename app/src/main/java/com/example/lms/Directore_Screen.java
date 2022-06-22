@@ -36,7 +36,7 @@ public class Directore_Screen extends AppCompatActivity implements SelectListner
     String specific_cname, specific_cno, token, person_id;
 ShimmerFrameLayout shimmerFrameLayout;
     Integer specific_cid;
-    String url;
+    String user_name;
     String temp;
     String puser_id;
     TextView t_teacher;
@@ -113,14 +113,16 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     for (int k = 0; k < array.length(); k++) {
                         JSONObject jsonObject = array.getJSONObject(k);
                         temp = jsonObject.getString("shortname");
+                        user_name = jsonObject.getString("username");
                         if (temp.equals("editingteacher")) {
                             user_id=object.getString("id");
                             m.setT_img(object.getString("profileimageurlsmall"));
                             m.setT_name(object.getString("fullname").toString());
                             m.setT_email(object.getString("email"));
                             m.setT_id(user_id);
+                            /*m.setUser_name(jsonObject.getString("username"));*/
                             holder.add(m);
-                            Log.d("axz", "dataincome_of_teacher_from_course: "+m.getT_id());
+                            Log.d("axz", "dataincome_of_teacher_from_course: "+user_name);
                             t_teacher.setText("Teachers :"+holder.size());
 
 
@@ -177,6 +179,7 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     for (int k = 0; k < array.length(); k++) {
                         JSONObject jsonObject = array.getJSONObject(k);
                         temp = jsonObject.getString("shortname");
+                        user_name=object.getString("username");
                         if (temp.equals("student")) {
                              puser_id=object.getString("id");
                             Log.d("axz", "dataincome_of_teacher_from_course: "+puser_id);
@@ -184,8 +187,9 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                             m.setT_name(object.getString("fullname").toString());
                             m.setT_email(object.getString("email"));
                             m.setT_id(puser_id);
+                            m.setUser_name(object.getString("username"));
                             holder.add(m);
-                            Log.d("axz", "dataincome_of_teacher_from_course: "+m.getT_id());
+                            Log.d("axz", "dataincome_of_teacher_from_course: "+user_name);
                             t_teacher.setText("Students:"+holder.size());
 
 

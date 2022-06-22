@@ -7,6 +7,7 @@ public class Model
     private String img_url;
     private String name_of_task;
     private String url_of_task;
+    private String username;
 
 
     public String getImg_url() {
@@ -58,4 +59,11 @@ public class Model
     }
 
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

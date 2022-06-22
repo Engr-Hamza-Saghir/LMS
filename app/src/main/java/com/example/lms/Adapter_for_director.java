@@ -1,7 +1,5 @@
 package com.example.lms;
 
-import static android.content.Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
-
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -27,6 +25,7 @@ public class Adapter_for_director extends RecyclerView.Adapter<view_holder_direc
     Context context;
     String falto;
     String userid;
+    String name,email;
     public Adapter_for_director(@NonNull ArrayList<model_director> arrayList, Context context,String token,String user_id)
     {
         this.model_directors=arrayList;
@@ -34,7 +33,6 @@ public class Adapter_for_director extends RecyclerView.Adapter<view_holder_direc
         this.falto =user_id;
         this.context=context;
         backup=new ArrayList<>(model_directors);
-        Log.d("oil", "Adapter_for_director: "+user_id);
     }
     @NonNull
     @Override
@@ -52,19 +50,23 @@ public class Adapter_for_director extends RecyclerView.Adapter<view_holder_direc
 
         holder.dire_person_name.setText(model_directors.get(position).getT_name());
         holder.dire_person_email.setText(model_directors.get(position).getT_email());
+        name=model_directors.get(position).getT_name();
+        email=model_directors.get(position).getT_email();
+
         Picasso.get().load(model_directors.get(position).getT_img()).placeholder(R.drawable.ic_baseline_person_24).into(holder.dire_person_img);
         holder.dire_person_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+
                 userid=model_directors.get(position).getT_id();
                 Log.d("axy", "dataIncome_of_teacher_from_course: "+userid);
                 Toast.makeText(context, "poy oil"+position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, show_user_record.class);
                 intent.putExtra("Token", token);
                 intent.putExtra("ID", userid);
-                intent.putExtra("pname", holder.dire_person_name.toString());
-                intent.putExtra("pemai", holder.dire_person_email.toString());
+                intent.putExtra("pname", model_directors.get(position).getT_name());
+                intent.putExtra("pemai", model_directors.get(position).getT_email());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 context.startActivity(intent);
             }

@@ -43,9 +43,14 @@ public class show_user_record extends AppCompatActivity {
         string_person_email = getIntent().getStringExtra("pemai");
         string_person_img = getIntent().getStringExtra("pimg");
 
+
         setContentView(R.layout.activity_show_user_record);
         setTitle("Courses");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        Log.d("nif", "onCreate: "+string_person_name);
+        Log.d("nif", "onCreate: "+string_person_email);
         url = "http://192.168.43.30/moodle/webservice/rest/server.php?wsfunction=core_enrol_get_users_courses&userid=" + myid + "&wstoken=" + token + "&moodlewsrestformat=json";
         rcv_for_enroll_courses = (RecyclerView) findViewById(R.id.recv_for_userrecord);
         rcv_for_enroll_courses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

@@ -5,6 +5,7 @@ public class model_director
     private String t_name;
     private String t_email;
     private String t_img;
+    private String user_name;
 
     public String getT_id() {
         return t_id;
@@ -41,4 +42,11 @@ public class model_director
     }
 
 
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
 }
