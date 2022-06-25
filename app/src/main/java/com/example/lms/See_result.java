@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 
 public class See_result extends AppCompatActivity
 {
-    String assignment_id,course_id,assignment_due_date,user_id;
+    String assignment_id,course_id,assignment_due_date;
     RadioGroup radioGroup;
     ShimmerFrameLayout shimmerFrameLayout;
     RadioButton radioButton;
@@ -44,6 +46,9 @@ public class See_result extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setTitle("Result");
         assignment_id=getIntent().getStringExtra("assignment_id");
         course_id=getIntent().getStringExtra("course_id");
         assignment_due_date=getIntent().getStringExtra("assignment_due_date");
@@ -107,16 +112,17 @@ public class See_result extends AppCompatActivity
                         for (int bc=0;bc<array.length();bc++) {
                             JSONObject id = array.getJSONObject(bc);
                             Log.d("arrays", "objects ="+id.length());
-                            Model_submissions model_submissions;
-                            model_submissions=new Model_submissions();
+
                             JSONArray submissions = id.getJSONArray("submissions");
                             for (int j = 0; j < submissions.length(); j++)
                             {
                                 Log.d("rafaiy", "lenght = " + submissions.length());
                                 Log.d("rafaiy", "lenght = " + j);
                                 JSONObject userid = submissions.getJSONObject(j);
-                                user_id=userid.getString("userid");
+                                String user_id=userid.getString("userid");
                                 Log.d("userid", "user id ="+user_id);
+
+
                                 status=userid.getString("status");
                                 Log.d("userid", "user id ="+status);
                                 if (status.equals("submitted"))
@@ -136,9 +142,50 @@ public class See_result extends AppCompatActivity
                                              submit_date=Integer.parseInt(timemodify.getString("timemodified"));
                                              if (int_assignment_due_date>submit_date)
                                              {
-                                                 model_submissions.setSub_std_name(user_id);
-                                                 model_submissions.setSub_std_email("dumy@gmail.com");
-                                                 arrayList.add(model_submissions);
+                                                 String name = "",email="";
+                                                 for (int mn=0;mn<Utility.allUsers.size();mn++)
+                                                 {
+                                                     if (Utility.allUsers.get(mn).getT_id().equals(user_id))
+                                                     {
+                                                         Model_submissions model_submissions;
+                                                         model_submissions=new Model_submissions();
+                                                         name=Utility.allUsers.get(mn).getT_name();
+                                                         email=Utility.allUsers.get(mn).getT_email();
+                                                         Log.d("User__Name", ""+Utility.allUsers.get(mn).getT_id());
+                                                         Log.d("User__Name", ""+Utility.allUsers.get(mn).getT_name());
+                                                         Log.d("User__Name", ""+Utility.allUsers.get(mn).getT_email());
+                                                         model_submissions.setSub_std_name(Utility.allUsers.get(mn).getT_name());
+                                                         model_submissions.setSub_std_email(Utility.allUsers.get(mn).getT_email());
+                                                         arrayList.add(model_submissions);
+                                                         break;
+                                                     }
+
+                                                     /*if(Utility.allUsers.get(mn).getT_id()==user_id)
+                                                     {
+                                                         name=Utility.allUsers.get(mn).getT_name();
+                                                         email = Utility.allUsers.get(mn).getT_email();
+
+                                                         break;
+                                                     }*/
+                                                 }
+/*                                                 for (model_director user_biit:Utility.allUsers
+                                                 ) {
+                                                     Log.d("User__Name", ""+Utility.allUsers.get(Integer.parseInt(user_id)).getT_name());
+                                                     Log.d("User__Name", ""+Utility.allUsers.get(Integer.parseInt(user_id)).getT_id());
+                                                     Log.d("User__Name", ""+Utility.allUsers.get(Integer.parseInt(user_id)).getT_email());
+
+                                                    *//* if(user_biit.getT_id()==user_id)
+                                                     {
+                                                         name=user_biit.getT_name();
+                                                         email = user_biit.getT_email();
+
+                                                         break;
+                                                     }*//*
+                                                 }*/
+
+total_stds.setText("Students:"+arrayList.size());
+                                                 Log.d("userid_mh", "user id ="+name);
+                                                 Log.d("userid_mh", "user id ="+email);
                                                  Log.d("user_id", " you ="+user_id+" submit assignment on time");
                                              }
 
@@ -203,16 +250,17 @@ public class See_result extends AppCompatActivity
                         for (int bc=0;bc<array.length();bc++) {
                             JSONObject id = array.getJSONObject(bc);
                             Log.d("arrays", "objects ="+id.length());
-                            Model_submissions model_submissions;
-                            model_submissions=new Model_submissions();
+
                             JSONArray submissions = id.getJSONArray("submissions");
                             for (int j = 0; j < submissions.length(); j++)
                             {
                                 Log.d("rafaiy", "lenght = " + submissions.length());
                                 Log.d("rafaiy", "lenght = " + j);
                                 JSONObject userid = submissions.getJSONObject(j);
-                                user_id=userid.getString("userid");
+                                String user_id=userid.getString("userid");
                                 Log.d("userid", "user id ="+user_id);
+
+
                                 status=userid.getString("status");
                                 Log.d("userid", "user id ="+status);
                                 if (status.equals("submitted"))
@@ -232,9 +280,51 @@ public class See_result extends AppCompatActivity
                                                 submit_date=Integer.parseInt(timemodify.getString("timemodified"));
                                                 if (int_assignment_due_date<submit_date)
                                                 {
-                                                    model_submissions.setSub_std_name(user_id);
-                                                    model_submissions.setSub_std_email("dumy@gmail.com");
-                                                    arrayList.add(model_submissions);
+                                                    String name = "",email="";
+                                                    for (int mn=0;mn<Utility.allUsers.size();mn++)
+                                                    {
+                                                        if (Utility.allUsers.get(mn).getT_id().equals(user_id))
+                                                        {
+                                                            Model_submissions model_submissions;
+                                                            model_submissions=new Model_submissions();
+                                                            name=Utility.allUsers.get(mn).getT_name();
+                                                            email=Utility.allUsers.get(mn).getT_email();
+                                                            Log.d("User__Name", ""+Utility.allUsers.get(mn).getT_id());
+                                                            Log.d("User__Name", ""+Utility.allUsers.get(mn).getT_name());
+                                                            Log.d("User__Name", ""+Utility.allUsers.get(mn).getT_email());
+                                                            model_submissions.setSub_std_name(Utility.allUsers.get(mn).getT_name());
+                                                            model_submissions.setSub_std_email(Utility.allUsers.get(mn).getT_email());
+                                                            arrayList.add(model_submissions);
+
+                                                            break;
+                                                        }
+
+                                                     /*if(Utility.allUsers.get(mn).getT_id()==user_id)
+                                                     {
+                                                         name=Utility.allUsers.get(mn).getT_name();
+                                                         email = Utility.allUsers.get(mn).getT_email();
+
+                                                         break;
+                                                     }*/
+                                                    }
+/*                                                 for (model_director user_biit:Utility.allUsers
+                                                 ) {
+                                                     Log.d("User__Name", ""+Utility.allUsers.get(Integer.parseInt(user_id)).getT_name());
+                                                     Log.d("User__Name", ""+Utility.allUsers.get(Integer.parseInt(user_id)).getT_id());
+                                                     Log.d("User__Name", ""+Utility.allUsers.get(Integer.parseInt(user_id)).getT_email());
+
+                                                    *//* if(user_biit.getT_id()==user_id)
+                                                     {
+                                                         name=user_biit.getT_name();
+                                                         email = user_biit.getT_email();
+
+                                                         break;
+                                                     }*//*
+                                                 }*/
+
+
+                                                    Log.d("userid_mh", "user id ="+name);
+                                                    Log.d("userid_mh", "user id ="+email);
                                                     Log.d("user_id", " you ="+user_id+" submit assignment on time");
                                                 }
 
@@ -279,7 +369,20 @@ public class See_result extends AppCompatActivity
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArray);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish();
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+
+        super.onSaveInstanceState(outState);
     }
 }

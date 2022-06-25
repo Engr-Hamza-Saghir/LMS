@@ -112,6 +112,7 @@ public class General_act extends AppCompatActivity {
                                     webSettings.setSavePassword(true);
                                     webSettings.setSaveFormData(true);
                                     webSettings.setEnableSmoothTransition (true);
+                                    webSettings.getAllowContentAccess();
                                 }
                             });
 

@@ -58,6 +58,8 @@ public class director_all_courses extends Fragment {
     RecyclerView rcv_for_all_courses;
     String token;
     int cids;
+    ArrayList<model_for_ecourse> arrayList = new ArrayList<>();
+
 
     public director_all_courses() {
         // Required empty public constructor
@@ -108,7 +110,19 @@ public class director_all_courses extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("Token", "");
         Log.d("jwa", "onCreateView: " + token);
+        String name = "",email="";
 
+       /* for (model_director user:Utility.allUsers
+        ) {
+
+
+                name=user.getT_name();
+                email = user.getT_email();
+                break;
+
+        }
+
+        Log.d("userid_mh", "user id ="+email);*/
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -184,7 +198,6 @@ public class director_all_courses extends Fragment {
     }
 
     public void dataincome_of_director1() {
-        ArrayList<model_for_ecourse> arrayList = new ArrayList<>();
 
         String director_url = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_course_get_courses&moodlewsrestformat=json";
 
@@ -274,5 +287,15 @@ rcv_for_all_courses.setVisibility(View.VISIBLE);
         });*/
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle saveinstance) {
+        super.onSaveInstanceState(saveinstance);
+        if (saveinstance!=null)
+        {
+
+        }
+    }
+
 
 }

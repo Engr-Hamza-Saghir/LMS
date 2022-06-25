@@ -27,7 +27,7 @@ public class Services extends Service {
     }
     public String user_id;
     public boolean flag=false;
-   public ArrayList<model_director> holder = new ArrayList<>();
+   public ArrayList<model_director> holder ;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
@@ -39,12 +39,11 @@ dataincome_of_teacher_from_course();
     public void dataincome_of_teacher_from_course() {
         ArrayList<model_director> holder1 = new ArrayList<>();
         String url_for_get_teacher_courses = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=8e6dc0f1606847131b60cc511d36db23&wsfunction=core_enrol_get_enrolled_users&courseid=1&moodlewsrestformat=json";
-        Log.d("start", "For loop started++aqib"+url_for_get_teacher_courses);
 
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, url_for_get_teacher_courses, null, response -> {
-            Log.d("start", "For loop started++aqib");
-            Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
+            holder =new ArrayList<>();
 
+            Utility.allUsers=new ArrayList<>();
             for (int i = 39; i < response.length(); i++) {
                 try {
                     JSONObject object = response.getJSONObject(i);
@@ -57,26 +56,25 @@ dataincome_of_teacher_from_course();
 
                     }
                     user_id=object.getString("id");
-                    Log.d("ajkal", "dataincome_of_teacher_from_course: " + user_id);
                     m.setT_img(object.getString("profileimageurlsmall"));
                     m.setT_name(object.getString("fullname").toString());
                     m.setT_email(object.getString("email"));
                     m.setT_id(user_id);
-                    holder.add(m);
 
-                    Log.d("poyo", "umer"+m.getT_email());
+                    //holder.add(m);
+                    Utility.allUsers.add(m);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
+            Log.d("UtilityData:",Utility.allUsers.size()+"");
             flag=true;
 
 
 
-
-            Log.d("KAL", "Json Data processed "+holder.size());
+            Log.d("MTBC", "Json Data processed "+holder.size());
 
 
         }, error -> {
