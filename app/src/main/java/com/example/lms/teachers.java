@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,10 +25,10 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link director_all_students#newInstance} factory method to
+ * Use the {@link teachers#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class director_all_students extends Fragment {
+public class teachers extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,14 +38,13 @@ public class director_all_students extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-   private RecyclerView recyclerView_dir_all_teachers1;
+    private RecyclerView recyclerView_dir_all_profs;
     private adapter_for_ecourse adp;
     private Adapter_for_director myadapter;
     private String token;
     private String user_id;
     private int cids;
-
-    public director_all_students() {
+    public teachers() {
         // Required empty public constructor
     }
 
@@ -56,21 +54,18 @@ public class director_all_students extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment director_all_students.
+     * @return A new instance of fragment teachers.
      */
     // TODO: Rename and change types and number of parameters
-    public static director_all_students newInstance(String param1, String param2) {
-        director_all_students fragment = new director_all_students();
+    public static teachers newInstance(String param1, String param2) {
+        teachers fragment = new teachers();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,16 +79,17 @@ public class director_all_students extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_director_all_students, container, false);
-        recyclerView_dir_all_teachers1 =(RecyclerView) view.findViewById(R.id.rcview_for_director_all_students);
-        recyclerView_dir_all_teachers1.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        View view=inflater.inflate(R.layout.fragment_teachers, container, false);
+        recyclerView_dir_all_profs =(RecyclerView) view.findViewById(R.id.rcview_for_director_all_prof);
+        recyclerView_dir_all_profs.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token=sharedPreferences.getString("Token","");
         Log.d("jwa", "onCreateView: "+token);
         /*        dataincome_of_director();*/
         dataincome_of_teacher_from_course();
-        return view;    }
+        return  view;
+    }
     public void dataincome_of_teacher_from_course() {
 
 
@@ -108,7 +104,7 @@ public class director_all_students extends Fragment {
             Log.d("checking", "For loop started");
             Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
 
-            for (int i = 39; i < response.length(); i++) {
+            for (int i = 0; i < 38; i++) {
                 try {
                     Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
                     JSONObject object = response.getJSONObject(i);
@@ -136,7 +132,7 @@ public class director_all_students extends Fragment {
             }
 
             myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(),token,user_id);
-            recyclerView_dir_all_teachers1.setAdapter(myadapter);
+            recyclerView_dir_all_profs.setAdapter(myadapter);
             Log.d("checking", "Json Data processed ");
 
 

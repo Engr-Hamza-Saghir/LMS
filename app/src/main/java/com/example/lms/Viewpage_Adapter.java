@@ -20,7 +20,7 @@ public class Viewpage_Adapter extends FragmentPagerAdapter {
         switch (position)
         {
             case 0: return new director_all_courses();
-            case 1: return new director_all_teachers();
+            case 1: return new teachers();
             case 2: return new director_all_students();
             default:return null;
         }

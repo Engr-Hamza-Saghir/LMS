@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -89,7 +88,6 @@ public class director_all_teachers extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_director_all_teachers, container, false);
-        Toast.makeText(getActivity().getApplicationContext(), "bla bla", Toast.LENGTH_SHORT).show();
         recyclerView_dir_all_teachers=(RecyclerView) view.findViewById(R.id.rcview_for_director_all_teacher);
         recyclerView_dir_all_teachers.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
