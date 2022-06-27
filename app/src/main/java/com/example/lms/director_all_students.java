@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class director_all_students extends Fragment {
     private adapter_for_ecourse adp;
     private Adapter_for_director myadapter;
     private String token;
+    ShimmerFrameLayout shimmerFrameLayout;
     private String user_id;
     private int cids;
 
@@ -87,7 +89,8 @@ public class director_all_students extends Fragment {
         View view=inflater.inflate(R.layout.fragment_director_all_students, container, false);
         recyclerView_dir_all_teachers1 =(RecyclerView) view.findViewById(R.id.rcview_for_director_all_students);
         recyclerView_dir_all_teachers1.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-
+        shimmerFrameLayout=(ShimmerFrameLayout)view.findViewById(R.id.simmer_for_allcourses);
+        shimmerFrameLayout.startShimmer();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token=sharedPreferences.getString("Token","");
         Log.d("jwa", "onCreateView: "+token);
@@ -101,13 +104,14 @@ public class director_all_students extends Fragment {
 
 
         ArrayList<model_director> holder = new ArrayList<>();
-        ArrayList<model_director> holder1 = new ArrayList<>();
         String url_for_get_teacher_courses = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_enrol_get_enrolled_users&courseid=1&moodlewsrestformat=json";
 
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, url_for_get_teacher_courses, null, response -> {
             Log.d("checking", "For loop started");
             Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
-
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            recyclerView_dir_all_teachers1.setVisibility(View.VISIBLE);
             for (int i = 39; i < response.length(); i++) {
                 try {
                     Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());

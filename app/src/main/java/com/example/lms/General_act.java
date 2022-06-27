@@ -2,6 +2,7 @@ package com.example.lms;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -47,7 +48,9 @@ public class General_act extends AppCompatActivity {
         token = getIntent().getStringExtra("token");
         cid = getIntent().getIntExtra("cid", 0);
         position = getIntent().getIntExtra("position", 0);
-
+        setTitle("Notify Result");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general);
         url = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_course_get_contents&courseid=" + cid.toString() + "&moodlewsrestformat=json&options[0][name]=excludemodules&options[0][value]=false";
@@ -186,5 +189,14 @@ public class General_act extends AppCompatActivity {
 
             return null;
         }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     }
 

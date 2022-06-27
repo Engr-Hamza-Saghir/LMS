@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".director_all_students">
 
+<!--
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcview_for_director_all_students"
         android:layout_width="match_parent"
@@ -14,4 +15,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/simmer_for_allcourses"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include layout="@layout/simmer_dashboard"/>
+                <include layout="@layout/simmer_dashboard"/>
+                <include layout="@layout/simmer_dashboard"/>
+                <include layout="@layout/simmer_dashboard"/>
+                <include layout="@layout/simmer_dashboard"/>
+                <include layout="@layout/simmer_dashboard"/>
+                <include layout="@layout/simmer_dashboard"/>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcview_for_director_all_students"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView15" />
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.MenuItemCompat;
@@ -128,7 +127,6 @@ public class director_all_courses extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 radioButton = (RadioButton) view.findViewById(checkedId);
 
-                Toast.makeText(getActivity(), "" + checkedId, Toast.LENGTH_SHORT).show();
                 if (radioButton.getId() == R.id.select_current) {
                     shimmerFrameLayout.startShimmer();
                     dataincome_of_director1();

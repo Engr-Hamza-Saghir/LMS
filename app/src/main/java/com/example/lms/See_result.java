@@ -182,8 +182,8 @@ public class See_result extends AppCompatActivity
                                                          break;
                                                      }*//*
                                                  }*/
-
-total_stds.setText("Students:"+arrayList.size());
+                                                int ts=arrayList.size();
+                                                total_stds.setText("Students:"+ts);
                                                  Log.d("userid_mh", "user id ="+name);
                                                  Log.d("userid_mh", "user id ="+email);
                                                  Log.d("user_id", " you ="+user_id+" submit assignment on time");
@@ -322,7 +322,8 @@ total_stds.setText("Students:"+arrayList.size());
                                                      }*//*
                                                  }*/
 
-
+                                                    int ts=arrayList.size();
+                                                    total_stds.setText("Students:"+ts);
                                                     Log.d("userid_mh", "user id ="+name);
                                                     Log.d("userid_mh", "user id ="+email);
                                                     Log.d("user_id", " you ="+user_id+" submit assignment on time");

@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class teachers extends Fragment {
     private Adapter_for_director myadapter;
     private String token;
     private String user_id;
+    ShimmerFrameLayout shimmerFrameLayout;
     private int cids;
     public teachers() {
         // Required empty public constructor
@@ -82,10 +84,12 @@ public class teachers extends Fragment {
         View view=inflater.inflate(R.layout.fragment_teachers, container, false);
         recyclerView_dir_all_profs =(RecyclerView) view.findViewById(R.id.rcview_for_director_all_prof);
         recyclerView_dir_all_profs.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-
+        shimmerFrameLayout=(ShimmerFrameLayout)view.findViewById(R.id.simmer_for_allcourses);
+        shimmerFrameLayout.startShimmer();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token=sharedPreferences.getString("Token","");
         Log.d("jwa", "onCreateView: "+token);
+
         /*        dataincome_of_director();*/
         dataincome_of_teacher_from_course();
         return  view;
@@ -103,8 +107,10 @@ public class teachers extends Fragment {
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, url_for_get_teacher_courses, null, response -> {
             Log.d("checking", "For loop started");
             Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
-
-            for (int i = 0; i < 38; i++) {
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            recyclerView_dir_all_profs.setVisibility(View.VISIBLE);
+            for (int i = 2; i < 39; i++) {
                 try {
                     Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
                     JSONObject object = response.getJSONObject(i);
