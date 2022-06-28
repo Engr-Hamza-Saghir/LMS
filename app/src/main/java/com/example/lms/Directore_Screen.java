@@ -96,11 +96,13 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String url_for_get_teacher_courses = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_enrol_get_enrolled_users&courseid=" + specific_cid + "&moodlewsrestformat=json";
 
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, url_for_get_teacher_courses, null, response -> {
-            Log.d("checkings", "For loop started"+token);
-                Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+            Log.d("checking", "For loop started");
+            Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
+
+
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
             for (int i = 0; i < response.length(); i++) {
                 try {
                     Log.d("uma", "dataincome_of_teacher_from_course: " + response.length());
@@ -113,17 +115,18 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     for (int k = 0; k < array.length(); k++) {
                         JSONObject jsonObject = array.getJSONObject(k);
                         temp = jsonObject.getString("shortname");
-                        user_name = jsonObject.getString("username");
+                        user_name=object.getString("username");
                         if (temp.equals("editingteacher")) {
-                            user_id=object.getString("id");
+                            puser_id=object.getString("id");
+                            Log.d("axz", "dataincome_of_teacher_from_course: "+puser_id);
                             m.setT_img(object.getString("profileimageurlsmall"));
                             m.setT_name(object.getString("fullname").toString());
                             m.setT_email(object.getString("email"));
-                            m.setT_id(user_id);
-                            /*m.setUser_name(jsonObject.getString("username"));*/
+                            m.setT_id(puser_id);
+                            m.setUser_name(object.getString("username"));
                             holder.add(m);
                             Log.d("axz", "dataincome_of_teacher_from_course: "+user_name);
-                            t_teacher.setText("Teachers :"+holder.size());
+                            t_teacher.setText("Teachers:"+holder.size());
 
 
                         }
@@ -139,7 +142,7 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             }
 
-            myadapter = new Adapter_for_director(holder, Directore_Screen.this, token,user_id);
+            myadapter = new Adapter_for_director(holder, Directore_Screen.this, token,puser_id);
             recyclerView.setAdapter(myadapter);
 
             Log.d("checking", "Json Data processed ");
