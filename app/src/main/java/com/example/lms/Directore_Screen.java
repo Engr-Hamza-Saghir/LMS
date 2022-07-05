@@ -27,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Directore_Screen extends AppCompatActivity implements SelectListner {
     RecyclerView recyclerView;
@@ -59,7 +61,7 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         radioGroup=(RadioGroup)findViewById(R.id.radiogroup_for_members);
         shimmerFrameLayout=(ShimmerFrameLayout)findViewById(R.id.simmer_all_couursesdata);
         shimmerFrameLayout.startShimmer();
-
+        Log.d("bholo", ""+specific_cid);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -142,7 +144,7 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             }
 
-            myadapter = new Adapter_for_director(holder, Directore_Screen.this, token,puser_id);
+            myadapter = new Adapter_for_director(holder, Directore_Screen.this, token,puser_id,specific_cid);
             recyclerView.setAdapter(myadapter);
 
             Log.d("checking", "Json Data processed ");
@@ -194,6 +196,12 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                             holder.add(m);
                             Log.d("axz", "dataincome_of_teacher_from_course: "+user_name);
                             t_teacher.setText("Students:"+holder.size());
+                            Collections.sort(holder, new Comparator<model_director>() {
+                                @Override
+                                public int compare(model_director m1, model_director m2) {
+                                    return m1.getT_name().compareToIgnoreCase(m2.getT_name());
+                                }
+                            });
 
 
                         }
@@ -209,7 +217,7 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             }
 
-            myadapter = new Adapter_for_director(holder, Directore_Screen.this, token,puser_id);
+            myadapter = new Adapter_for_director(holder, Directore_Screen.this, token,puser_id,specific_cid);
             recyclerView.setAdapter(myadapter);
 
             Log.d("checking", "Json Data processed ");

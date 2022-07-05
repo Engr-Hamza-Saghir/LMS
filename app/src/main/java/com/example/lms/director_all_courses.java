@@ -11,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,8 +76,7 @@ public class director_all_courses extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -97,13 +95,13 @@ public class director_all_courses extends Fragment {
         rcv_for_all_courses = (RecyclerView) view.findViewById(R.id.rcview_for_director_all_courses);
         rcv_for_all_courses.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         total_courses = (TextView) view.findViewById(R.id.total_subjects);
-        shimmerFrameLayout=(ShimmerFrameLayout)view.findViewById(R.id.simmer_for_allcourses);
+        shimmerFrameLayout = (ShimmerFrameLayout) view.findViewById(R.id.simmer_for_allcourses);
         shimmerFrameLayout.startShimmer();
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("Token", "");
         Log.d("jwa", "onCreateView: " + token);
-        String name = "",email="";
+        String name = "", email = "";
 
        /* for (model_director user:Utility.allUsers
         ) {
@@ -194,9 +192,9 @@ public class director_all_courses extends Fragment {
         String director_url = "http://192.168.43.30/moodle/webservice/rest/server.php?wstoken=" + token + "&wsfunction=core_course_get_courses&moodlewsrestformat=json";
 
         JsonArrayRequest jsonArray = new JsonArrayRequest(Request.Method.GET, director_url, null, response -> {
-shimmerFrameLayout.stopShimmer();
-shimmerFrameLayout.setVisibility(View.GONE);
-rcv_for_all_courses.setVisibility(View.VISIBLE);
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            rcv_for_all_courses.setVisibility(View.VISIBLE);
             for (int i = 52; i < response.length(); i++) {
                 try {
                     Log.d("cs", "For loop started" + response.length());
@@ -240,30 +238,28 @@ rcv_for_all_courses.setVisibility(View.VISIBLE);
     }
 
 
-/*
-    @Override
+   /* @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.serching,menu);
-        MenuItem menuItem=menu.findItem(R.id.search_item);
-        SearchView searchView= (SearchView) MenuItemCompat.getActionView(menuItem);
+        inflater.inflate(R.menu.serching, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_item);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setIconified(true);
-        SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-        {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s)
-            {
-                adp.getFilter().filter(s);
+            public boolean onQueryTextChange(String s) {
+              if (adp!=null)
+              {adp.getFilter().filter(s);}
+
                 return false;
             }
-        });
-        */
+        });*/
 /*SearchView searchView=(SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
@@ -284,14 +280,6 @@ rcv_for_all_courses.setVisibility(View.VISIBLE);
     }
 */
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle saveinstance) {
-        super.onSaveInstanceState(saveinstance);
-        if (saveinstance!=null)
-        {
-
-        }
-    }
 
 
 }

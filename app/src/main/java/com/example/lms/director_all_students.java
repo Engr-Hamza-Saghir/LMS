@@ -40,7 +40,7 @@ public class director_all_students extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-   private RecyclerView recyclerView_dir_all_teachers1;
+    private RecyclerView recyclerView_dir_all_teachers1;
     private adapter_for_ecourse adp;
     private Adapter_for_director myadapter;
     private String token;
@@ -69,13 +69,16 @@ public class director_all_students extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -86,21 +89,21 @@ public class director_all_students extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_director_all_students, container, false);
-        recyclerView_dir_all_teachers1 =(RecyclerView) view.findViewById(R.id.rcview_for_director_all_students);
+
+        View view = inflater.inflate(R.layout.fragment_director_all_students, container, false);
+        recyclerView_dir_all_teachers1 = (RecyclerView) view.findViewById(R.id.rcview_for_director_all_students);
         recyclerView_dir_all_teachers1.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-        shimmerFrameLayout=(ShimmerFrameLayout)view.findViewById(R.id.simmer_for_allcourses);
+        shimmerFrameLayout = (ShimmerFrameLayout) view.findViewById(R.id.simmer_for_allcourses);
         shimmerFrameLayout.startShimmer();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
-        token=sharedPreferences.getString("Token","");
-        Log.d("jwa", "onCreateView: "+token);
+        token = sharedPreferences.getString("Token", "");
+        Log.d("jwa", "onCreateView: " + token);
         /*        dataincome_of_director();*/
         dataincome_of_teacher_from_course();
-        return view;    }
+        return view;
+    }
+
     public void dataincome_of_teacher_from_course() {
-
-
-
 
 
         ArrayList<model_director> holder = new ArrayList<>();
@@ -124,14 +127,14 @@ public class director_all_students extends Fragment {
                     if (kshi.contains("biit") || kshi.contains("arid")) {
 
                     }
-                    user_id=object.getString("id");
+                    user_id = object.getString("id");
                     m.setT_img(object.getString("profileimageurlsmall"));
                     m.setT_name(object.getString("fullname").toString());
                     m.setT_email(object.getString("email"));
                     m.setT_id(user_id);
                     holder.add(m);
 
-                    Log.d("poyo", "umer"+m);
+                    Log.d("poyo", "umer" + m);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -139,7 +142,7 @@ public class director_all_students extends Fragment {
 
             }
 
-            myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(),token,user_id);
+            myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(), token, user_id,0);
             recyclerView_dir_all_teachers1.setAdapter(myadapter);
             Log.d("checking", "Json Data processed ");
 
@@ -154,4 +157,27 @@ public class director_all_students extends Fragment {
         requestQueue.add(jsonArray);
     }
 
+ /*   @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.serching, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_item);
+        SearchView actionView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        actionView.setIconified(true);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        actionView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        actionView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(myadapter!=null)
+                {myadapter.getFilter().filter(s);}
+
+                return false;
+            }
+        });
+    }*/
 }

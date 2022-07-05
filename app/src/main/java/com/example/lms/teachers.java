@@ -137,7 +137,7 @@ public class teachers extends Fragment {
 
             }
 
-            myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(),token,user_id);
+            myadapter = new Adapter_for_director(holder, getActivity().getApplicationContext(),token,user_id,0);
             recyclerView_dir_all_profs.setAdapter(myadapter);
             Log.d("checking", "Json Data processed ");
 

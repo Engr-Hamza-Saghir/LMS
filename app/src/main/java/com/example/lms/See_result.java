@@ -1,5 +1,6 @@
 package com.example.lms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,7 +29,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class See_result extends AppCompatActivity
@@ -39,10 +43,12 @@ public class See_result extends AppCompatActivity
     RadioButton radioButton;
     Adapter_submission_assinments adp;
     TextView total_stds;
+    DateFormat formatter ;
     RecyclerView rcv_of_submit_stds;
     String token,status;
     int int_assignment_due_date,submit_date;
     String director_url;
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -55,7 +61,7 @@ public class See_result extends AppCompatActivity
         SharedPreferences sharedPreferences = getSharedPreferences("TOKEN_ID", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("Token", "");
         int_assignment_due_date=Integer.parseInt(assignment_due_date);
-
+        formatter = new SimpleDateFormat("HH:mm:ss:SSS");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_result);
         Log.d("assign_id", "Assignment_id= "+assignment_id);
@@ -280,6 +286,39 @@ public class See_result extends AppCompatActivity
                                                 submit_date=Integer.parseInt(timemodify.getString("timemodified"));
                                                 if (int_assignment_due_date<submit_date)
                                                 {
+                                                    Date date = new Date(submit_date);
+                                                    Date due = new Date(int_assignment_due_date);
+
+                                                    String dateFormatted = formatter.format(date.getTime());
+                                                    String dateFormatted1 = formatter.format(due.getTime());
+                                                    long difference = date.getTime()-due.getTime();
+
+                                                    SimpleDateFormat dateFormat=new SimpleDateFormat("HH:mm:ss:SSS");
+                                                    dateFormat.format(difference);
+                                                    Date date1=new Date(difference);
+                                                    String reultdate=formatter.format(date1);
+                                                    long difference_In_Seconds
+                                                            = (difference
+                                                            / 1000)
+                                                            % 60;
+
+                                                    long difference_In_Minutes
+                                                            = (difference
+                                                            / (1000 * 60))
+                                                            % 60;
+
+                                                    long difference_In_Hours
+                                                            = (difference
+                                                            / (1000 * 60 * 60))
+                                                            % 24;
+                                                    long difference_In_Days
+                                                            = (difference
+                                                            / (1000 * 60 * 60 * 24))
+                                                            % 365;
+
+                                                    Log.d("datetime", " due  time :"+dateFormatted1);
+                                                    Log.d("datetime", " submit time :"+dateFormatted);
+                                                    Log.d("datetime", "Time late = "+difference_In_Days+"DAYS :"+difference_In_Hours+" HOURS "+difference_In_Minutes+":MINUTES "+difference_In_Seconds+":SECONDS");
                                                     String name = "",email="";
                                                     for (int mn=0;mn<Utility.allUsers.size();mn++)
                                                     {

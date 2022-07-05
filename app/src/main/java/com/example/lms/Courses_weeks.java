@@ -51,7 +51,7 @@ public class Courses_weeks extends AppCompatActivity implements SelectListner {
         SharedPreferences preferences = getSharedPreferences("TOKEN_ID", MODE_PRIVATE);
         token = preferences.getString("Token", "");
         Log.d("logg", "onCreate: " + specific_cid);
-
+        Log.d("irha", ""+specific_cid);
         SharedPreferences sharedPreferences = getSharedPreferences("TOKEN_ID", MODE_PRIVATE);
         if (token.equals("8e6dc0f1606847131b60cc511d36db23")) {
             person_id = getIntent().getStringExtra("p_id");

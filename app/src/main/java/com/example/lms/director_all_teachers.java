@@ -1,14 +1,20 @@
 package com.example.lms;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +77,7 @@ public class director_all_teachers extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null)
         {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -135,7 +142,7 @@ public class director_all_teachers extends Fragment {
 
             }
 
-            myadapter1 = new Adapter_for_director(holder, getActivity().getApplicationContext(), token,user_id);
+            myadapter1 = new Adapter_for_director(holder, getActivity().getApplicationContext(), token,user_id,0);
             recyclerView_dir_all_teachers.setAdapter(myadapter1);
 
             Log.d("checking", "Json Data processed ");
@@ -150,5 +157,27 @@ public class director_all_teachers extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArray);
     }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.serching, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_item);
+        SearchView actionView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        actionView.setIconified(true);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        actionView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        actionView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(myadapter1!=null)
+                {myadapter1.getFilter().filter(s);}
+
+                return false;
+            }
+        });
+    }
 }

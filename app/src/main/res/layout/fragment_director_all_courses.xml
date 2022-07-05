@@ -83,40 +83,68 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView9"
         android:layout_width="match_parent"
         android:layout_height="585dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView15">
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/simmer_for_allcourses"
-            >
-            
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <include layout="@layout/simmer_dashboard"/>
-    <include layout="@layout/simmer_dashboard"/>
-    <include layout="@layout/simmer_dashboard"/>
-    <include layout="@layout/simmer_dashboard"/>
-    <include layout="@layout/simmer_dashboard"/>
-    <include layout="@layout/simmer_dashboard"/>
-    <include layout="@layout/simmer_dashboard"/>
 
-</LinearLayout>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/simmer_for_allcourses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/simmer_dashboard" />
+
+                <include layout="@layout/simmer_dashboard" />
+
+                <include layout="@layout/simmer_dashboard" />
+
+                <include layout="@layout/simmer_dashboard" />
+
+                <include layout="@layout/simmer_dashboard" />
+
+                <include layout="@layout/simmer_dashboard" />
+
+                <include layout="@layout/simmer_dashboard" />
+
+            </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcview_for_director_all_courses"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="match_parent"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView15" />
     </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/edt_search_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:hint="search"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:lines="1"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView9" />
 
     <!--
  -->
