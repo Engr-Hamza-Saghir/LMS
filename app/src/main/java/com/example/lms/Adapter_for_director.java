@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -76,7 +75,6 @@ public class Adapter_for_director extends RecyclerView.Adapter<view_holder_direc
                 else {
                     userid = model_directors.get(position).getT_id();
                     Log.d("axy", "dataIncome_of_teacher_from_course: " + userid);
-                    Toast.makeText(context, "poy oil" + position, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, show_user_record.class);
                     intent.putExtra("Token", token);
                     intent.putExtra("ID", userid);

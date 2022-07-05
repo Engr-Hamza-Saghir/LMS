@@ -71,6 +71,7 @@ public class teachers extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -151,5 +152,28 @@ public class teachers extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArray);
     }
+    /*@Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.serching, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_item);
+        SearchView actionView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        actionView.setIconified(true);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        actionView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        actionView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(myadapter!=null)
+                {myadapter.getFilter().filter(s);}
+
+                return false;
+            }
+        });
+    }*/
 
 }
